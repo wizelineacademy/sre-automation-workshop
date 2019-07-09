@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block header_image %}{% if ARCHIVE_HEADER_IMAGE %}{{ ARCHIVE_HEADER_IMAGE }}{% else %}{{ DEFAULT_HEADER_IMAGE }}{% endif %}{% endblock %}
+{% block header_type %}author-head{% endblock %}
+{% block scroll %}{% endblock %}
+{% block template_type %}author-template{% endblock %}
+{% block header_title %}{% endblock %}
+{% block content %}
+<section class="author-profile inner">
+    <figure class="author-image">
+        {% for article in articles_page.object_list %}
+        <div class="img" style="background-image: url('{% if article.author_pic_url %}{{ article.author_pic_url }}{% else %}{{ AUTHOR_PIC_URL }}{% endif %}')"><span class="hidden">{{ author.name }}'s Picture</span></div>
+    </figure>
+    {% endfor %}
+    <h1 class="author-title">{{ author.name }}</h1>
+    <h2 class="author-bio">{{ AUTHOR_BIO }}</h2>
+    <div class="author-meta">
+        <span class="author-location icon-location">{{ AUTHOR_LOCATION }}</span>
+        <span class="author-stats"><i class="icon-stats"></i> {{ articles_page.object_list | count }} posts</span>
+    </div>
+</section>
+<main id="content" class="content" role="main" itemprop="mainContentOfPage" itemscope="" itemtype="http://schema.org/Blog">
+    <div class="extra-pagination inner">
+        {% include 'pagination.html' %}
+    </div>
+    {% for article in articles_page.object_list %}
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <header class="post-header" itemprop="headline">
+            <h2 class="post-title">
+                <a href="{{ SITEURL }}/{{ article.url }}" itemprop="url" rel="bookmark">
+                    {{ article.title|striptags }}
+                </a>
+            </h2>
+        </header>
+        <section class="post-excerpt">
+            {{- article.summary|striptags -}}
+            <a class="read-more" itemprop="url" href="{{ SITEURL }}/{{ article.url}}" title="Read this article" rel="bookmark"> &raquo;</a>
+        </section>
+        <footer class="post-meta">
+            <img class="author-thumb" src="{% if article.author_pic_url %}{{ article.author_pic_url }}{% else %}{{ AUTHOR_PIC_URL }}{% endif %}" alt="{{ article.author }}" nopin="nopin">
+            <a href="{{ SITEURL }}/{{ article.author.url }}">{{ article.author }}</a> on {% for tag in article.tags %}<a href="{{ SITEURL }}/{{ tag.url }}">{{ tag.name | title }}{% if not loop.last %}, {% endif %}</a>{% endfor %}
+            <time class="post-date" itemprop="datePublished" datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time>
+        </footer>
+    </article>
+    {% endfor %}
+</main>
+{% endblock content %}

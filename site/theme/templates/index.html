@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block header_type %}{% endblock %}
+{% block content %}
+<main id="content" class="content" role="main" itemprop="mainContentOfPage" itemscope="" itemtype="http://schema.org/Blog">
+    <div>
+        {% include 'pagination.html' %}
+    </div>
+    {% if articles_page.object_list %}
+    {% for article in articles_page.object_list %}
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <header class="post-header" itemprop="headline">
+            <h2 class="post-title">
+                <a href="{{ SITEURL }}/{{ article.url }}" itemprop="url" rel="bookmark">
+                    {{ article.title|striptags }}
+                </a>
+            </h2>
+        </header>
+        <section class="post-excerpt">
+            {{- article.summary|striptags -}}
+            <a class="read-more" itemprop="url" href="{{ SITEURL }}/{{ article.url}}" title="Read this article" rel="bookmark"> &raquo;</a>
+        </section>
+        <footer class="post-meta">
+            <img class="author-thumb" src="{% if article.author_pic_url %}{{ article.author_pic_url }}{% else %}{{ AUTHOR_PIC_URL }}{% endif %}" alt="{{ article.author }}" nopin="nopin">
+            <a href="{{ article.author.url }}">{% if article.author %}{{ article.author }}{% else %}{{ AUTHOR }}{% endif %}</a> on {% for tag in article.tags %}<a href="{{ tag.url }}">{{ tag.name | title }}{% if not loop.last %}, {% endif %}</a>{% endfor %}
+            <time class="post-date" itemprop="datePublished" datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time>
+        </footer>
+    </article>
+    {% endfor %}
+    {% else %}
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <header class="post-header" itemprop="headline">
+            <h2 class="post-title">
+            No hay post actualmente
+            </h2>
+        </header>
+        <section class="post-excerpt">
+        <img src="{{ SITEURL }}/theme/images/Nothing_to_do_here_by_rober_raik-d4cxltj.png">
+        </section>
+    </article>
+    {% endif %}
+    {% include 'pagination.html' %}
+</main>
+{% endblock content %}

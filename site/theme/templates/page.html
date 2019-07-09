@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}{{ page.title }}{%endblock%}
+{% block scroll %}{% endblock %}
+{% block header_title %}
+<h1 class="page-title" itemprop="headline">{{ page.title|striptags }}</h1>
+{% endblock %}
+{% block header_type %}post-head no-cover{% endblock %}
+{% block header_image %}{% endblock %}
+{% block template_type %}post-template page-template page{% endblock %}
+{% block content %}
+<main id="content" class="content" role="main">
+    <article class="post page" itemscope="" itemtype="http://schema.org/BlogPosting" itemprop="blogPost">
+        <header class="post-header">
+            <h1 class="post-title" itemprop="headline">{{ page.title|striptags }}</h1>
+        </header>
+        <section class="post-content">
+            {{ page.content }}
+        </section>
+    </article>
+</main>
+{% endblock %}

@@ -1,3 +1,5 @@
+# This dockerfile is user to build the output files.
+# It contains all the required dependencies
 FROM python:3.6-alpine
 
 WORKDIR /site
@@ -8,4 +10,5 @@ RUN apk add \
       bash \
     && pip install -r requirements.txt
 
+VOLUME /site
 CMD ["sh", "-c", "make clean && make html"]

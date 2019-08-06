@@ -2,9 +2,19 @@ S3_BUCKET      ?= wizeline-academy-automation
 AWS_PROFILE    ?= interviews-provision
 
 # PHONY targets are not associated with files
-.PHONY: run build deploy
+.PHONY: help run build deploy
 
 # the default target is the first target
+help:
+	@echo 'Makefile for a static blog site                                           '
+	@echo '                                                                          '
+	@echo 'Usage:                                                                    '
+	@echo '   make help                      print this message                      '
+	@echo '   make run                       build the site and serve it locally     '
+	@echo '   make build                     build the site files                    '
+	@echo '   make deploy                    deploy files to s3                      '
+	@echo '                                                                          '
+
 run: build
 	docker build -t wizeacademy/blog -f Dockerfile .
 	docker run --rm -ti -p 8000:80 wizeacademy/blog:latest

@@ -1,3 +1,5 @@
+https://github.com/wizelineacademy/sre-automation-workshop
+
 # My Blog In The Cloud
 
 This repo contains all the source code to build and deploy a static site blog to AWS s3.

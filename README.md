@@ -59,3 +59,5 @@ Usage:
 - [zola (rust)](https://github.com/getzola/zola)
 - [cobalt (rust)](https://cobalt-org.github.io/)
 - [hugo (golang)](https://gohugo.io/)
+- [jekyll (ruby)](https://jekyllrb.com/)
+- [gatsby (js)](https://www.gatsbyjs.org/)

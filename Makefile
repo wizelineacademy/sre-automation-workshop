@@ -1,10 +1,10 @@
 S3_BUCKET      ?= wizeline-academy-automation
 AWS_PROFILE    ?= interviews-provision
 
+# PHONY targets are not associated with files
 .PHONY: run build deploy
 
-.DEFAULT: run
-
+# the default target is the first target
 run: build
 	docker build -t wizeacademy/blog -f Dockerfile .
 	docker run --rm -ti -p 8000:80 wizeacademy/blog:latest

@@ -8,6 +8,4 @@ RUN apk add \
       bash \
     && pip install -r requirements.txt
 
-ENV SITEURL=""
-
 CMD ["sh", "-c", "make clean && make html"]

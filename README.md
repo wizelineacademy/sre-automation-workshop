@@ -43,6 +43,7 @@ Usage:
    make run                       build the site and serve it locally
    make build                     build the site files
    make deploy                    deploy files to s3
+   make provision-infra           create the required infra for deployment
 
 ```
 

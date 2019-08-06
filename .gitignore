@@ -1,2 +1,4 @@
 output
 *.pyc
+.terraform
+terraform.tfstate.backup

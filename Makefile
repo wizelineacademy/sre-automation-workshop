@@ -2,7 +2,7 @@ S3_BUCKET      ?= wizeline-academy-automation
 AWS_PROFILE    ?= interviews-provision
 
 # PHONY targets are not associated with files
-.PHONY: help run build deploy
+.PHONY: help run build deploy provision-infra
 
 # the default target is the first target
 help:
@@ -13,6 +13,7 @@ help:
 	@echo '   make run                       build the site and serve it locally     '
 	@echo '   make build                     build the site files                    '
 	@echo '   make deploy                    deploy files to s3                      '
+	@echo '   make provision-infra           create the required infra for deployment'
 	@echo '                                                                          '
 
 run: build
@@ -28,3 +29,8 @@ build:
 deploy: build
 	docker build -t wizeacademy/blog-deployer -f Dockerfile.deploy .
 	AWS_PROFILE=$(AWS_PROFILE) ./awscli.sh s3 cp --recursive /site/output s3://$(S3_BUCKET)/
+
+provision-infra:
+	cd $(CURDIR)/infrastructure; \
+	terraform init; \
+	terraform apply -auto-approve -input=false

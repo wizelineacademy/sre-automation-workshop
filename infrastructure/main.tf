@@ -49,5 +49,7 @@ EOF
     enabled = true
   }
 
+  force_destroy = true
+
   tags = "${merge(var.tags, map("Name", "${var.s3_bucket_name}"))}"
 }

@@ -1,5 +1,7 @@
+# ---- UPDATE THESE VALUES ----
 S3_BUCKET      ?= wizeline-academy-automation
 AWS_PROFILE    ?= interviews-provision
+# ---- /UPDATE THESE VALUES ----
 
 # PHONY targets are not associated with files
 .PHONY: help run build deploy provision-infra
@@ -31,6 +33,7 @@ deploy: build
 	AWS_PROFILE=$(AWS_PROFILE) ./awscli.sh s3 cp --recursive /site/output s3://$(S3_BUCKET)/
 
 provision-infra:
+	# TODO: use docker for running tf
 	cd $(CURDIR)/infrastructure; \
 	terraform init; \
 	terraform apply -auto-approve -input=false

@@ -1,8 +1,12 @@
 aws_region = "us-east-2"
 
+# ---- UPDATE THESE VALUES ----
+
 aws_profile = "interviews-provision"
 
 s3_bucket_name = "wizeline-academy-automation"
+
+# ---- /UPDATE THESE VALUES ----
 
 tags = {
   project     = "static-site"

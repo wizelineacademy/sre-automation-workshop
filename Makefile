@@ -1,5 +1,5 @@
 # ---- UPDATE THESE VALUES ----
-S3_BUCKET      ?= wizeline-academy-automation
+S3_BUCKET      ?= wizeline-academy-automation-0
 AWS_PROFILE    ?= interviews-provision
 # ---- /UPDATE THESE VALUES ----
 

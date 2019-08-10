@@ -26,7 +26,7 @@ variable "group_name" {
 }
 
 variable "total_users" {
-  default = "5"
+  default = "45"
 }
 
 variable "pgp_key" {

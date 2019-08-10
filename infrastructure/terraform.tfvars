@@ -4,7 +4,7 @@ aws_region = "us-east-2"
 
 aws_profile = "interviews-provision"
 
-s3_bucket_name = "wizeline-academy-automation"
+s3_bucket_name = "wizeline-academy-automation-0"
 
 # ---- /UPDATE THESE VALUES ----
 
